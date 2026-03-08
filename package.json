@@ -1,6 +1,6 @@
 {
   "name": "veridoq-client",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Official Veridoq API client for Node.js and TypeScript with built-in retry support and exponential backoff.",
   "type": "module",
   "main": "./dist/index.js",

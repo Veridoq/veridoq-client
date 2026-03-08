@@ -23,8 +23,9 @@ Or from the SDK package:
 ```bash
 cd veridoq-client
 npm install
-npm run build
 ```
+
+The SDK ships pre-compiled — no build step needed. To type-check the included tests and examples, run `npx tsc --noEmit`.
 
 ## Quick Start
 

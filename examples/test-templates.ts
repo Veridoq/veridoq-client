@@ -5,7 +5,7 @@
  *   VERIDOQ_API_KEY=vdq_xxx npx tsx examples/test-templates.ts
  */
 
-import { VeridoqClient, VeridoqError } from "../src/index.js";
+import { VeridoqClient, VeridoqError } from "../dist/index.js";
 
 async function main() {
   const apiKey = process.env.VERIDOQ_API_KEY;

@@ -5,7 +5,7 @@
  *   VERIDOQ_API_KEY=vdq_xxx npx tsx examples/test-chat.ts <document-id> [question]
  */
 
-import { VeridoqClient, VeridoqError } from "../src/index.js";
+import { VeridoqClient, VeridoqError } from "../dist/index.js";
 import readline from "readline";
 
 async function main() {

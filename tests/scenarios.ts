@@ -10,8 +10,8 @@
  * runs the workflow, and returns collected state for further assertions.
  */
 
-import { VeridoqClient, VeridoqError } from "../src/client.js";
-import type { ChatStreamEvent, V1ReportDetail } from "../src/types.js";
+import { VeridoqClient, VeridoqError } from "../dist/index.js";
+import type { ChatStreamEvent, V1ReportDetail } from "../dist/index.js";
 
 // ── Document Upload & Processing ──────────────────────────────────────────
 

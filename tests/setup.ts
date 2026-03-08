@@ -10,7 +10,7 @@
  *   VERIDOQ_TEMPLATE_ID — Template ID for verification tests
  */
 
-import { VeridoqClient } from "../src/client.js";
+import { VeridoqClient } from "../dist/index.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";

@@ -5,7 +5,7 @@
  *   VERIDOQ_API_KEY=vdq_xxx npx tsx examples/test-documents.ts [pdf-path]
  */
 
-import { VeridoqClient, waitForDocumentReady, downloadToBuffer, VeridoqError } from "../src/index.js";
+import { VeridoqClient, waitForDocumentReady, downloadToBuffer, VeridoqError } from "../dist/index.js";
 import fs from "fs";
 import path from "path";
 

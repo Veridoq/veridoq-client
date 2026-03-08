@@ -11,7 +11,7 @@ import {
   waitForJobReady, 
   downloadToBuffer,
   VeridoqError 
-} from "../src/index.js";
+} from "../dist/index.js";
 import fs from "fs";
 import path from "path";
 

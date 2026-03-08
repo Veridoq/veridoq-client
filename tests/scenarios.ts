@@ -398,6 +398,7 @@ export async function scenarioInvalidApiKey(
     { label: "v1ListTemplates", fn: () => badClient.v1ListTemplates() },
     { label: "getTemplate", fn: () => badClient.getTemplate(1) },
     { label: "createTemplate", fn: () => badClient.createTemplate({ name: "test", criteria: [] }) },
+    { label: "deleteTemplate", fn: () => badClient.deleteTemplate(1) },
     { label: "v1CreateReport", fn: () => badClient.v1CreateReport({ documentId: "00000000-0000-0000-0000-000000000000", templateId: 1 }) },
     { label: "v1GetReport", fn: () => badClient.v1GetReport("00000000-0000-0000-0000-000000000000") },
     { label: "v1ListReports", fn: () => badClient.v1ListReports() },
@@ -439,16 +440,26 @@ export async function scenarioInvalidApiKey(
 // ── Template CRUD ─────────────────────────────────────────────────────
 
 export interface TemplateCrudResult {
+  deletedCount: number;
   createdId: number;
   createdName: string;
   criteriaCount: number;
   fetchedName: string;
   fetchedCriteriaCount: number;
+  deleted: boolean;
 }
 
 export async function scenarioTemplateCrud(
   client: VeridoqClient,
 ): Promise<TemplateCrudResult> {
+  // Delete all existing org templates to start clean
+  const existing = await client.v1ListTemplates({ type: "org" });
+  let deletedCount = 0;
+  for (const t of existing.orgTemplates || []) {
+    await client.deleteTemplate(t.id);
+    deletedCount++;
+  }
+
   const uniqueName = `SDK Test Template ${Date.now()}`;
 
   // Create a template
@@ -478,12 +489,23 @@ export async function scenarioTemplateCrud(
   const found = (list.orgTemplates || []).find(t => t.id === created.id);
   if (!found) throw new Error(`Created template ${created.id} not found in org templates list`);
 
+  // Delete the created template
+  const deleteResult = await client.deleteTemplate(created.id);
+  if (!deleteResult.deleted) throw new Error("deleteTemplate did not return deleted: true");
+
+  // Verify it no longer appears in the org list
+  const afterDelete = await client.v1ListTemplates({ type: "org" });
+  const stillThere = (afterDelete.orgTemplates || []).find(t => t.id === created.id);
+  if (stillThere) throw new Error(`Template ${created.id} still in org list after delete`);
+
   return {
+    deletedCount,
     createdId: created.id,
     createdName: created.name,
     criteriaCount: created.criteriaCount,
     fetchedName: fetched.name,
     fetchedCriteriaCount: fetched.criteria!.length,
+    deleted: true,
   };
 }
 

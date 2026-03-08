@@ -268,6 +268,15 @@ export declare class VeridoqClient {
         }>;
     }>;
     /**
+     * Delete an org template by ID.
+     * @param templateId - The template ID
+     * @param options - Optional request options
+     */
+    deleteTemplate(templateId: number | string, options?: RequestOptions): Promise<{
+        deleted: boolean;
+        id: number;
+    }>;
+    /**
      * Get information about the current API key.
      * @param options - Optional request options
      */

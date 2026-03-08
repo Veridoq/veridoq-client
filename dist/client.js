@@ -599,6 +599,14 @@ export class VeridoqClient {
     async getTemplate(templateId, options) {
         return this.request("GET", `/v1/templates/${encodeURIComponent(String(templateId))}`, { retry: options?.retry, timeoutMs: options?.timeoutMs, noRetry: options?.noRetry });
     }
+    /**
+     * Delete an org template by ID.
+     * @param templateId - The template ID
+     * @param options - Optional request options
+     */
+    async deleteTemplate(templateId, options) {
+        return this.request("DELETE", `/v1/templates/${encodeURIComponent(String(templateId))}`, { retry: options?.retry, timeoutMs: options?.timeoutMs, noRetry: options?.noRetry });
+    }
     // ── API Key Info ────────────────────────────────────────────────────────────
     /**
      * Get information about the current API key.

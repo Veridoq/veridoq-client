@@ -1,7 +1,8 @@
 /**
  * Template CRUD — SDK integration test.
  *
- * Tests creating a template, fetching it by ID, and verifying it appears in the list.
+ * Tests deleting existing org templates, creating a new template,
+ * fetching it by ID, verifying it in the list, then deleting it.
  *
  * Run:
  *   VERIDOQ_API_KEY=vdq_xxx npx vitest run tests/template-crud.test.ts
@@ -19,13 +20,15 @@ describe("Template CRUD", () => {
     env = getTestEnv();
   });
 
-  it("should create a template, fetch it by ID, and find it in the org list", async () => {
+  it("should delete existing templates, create one, verify it, then delete it", async () => {
     result = await scenarioTemplateCrud(env.client);
 
+    expect(result.deletedCount).toBeGreaterThanOrEqual(0);
     expect(result.createdId).toBeGreaterThan(0);
     expect(result.createdName).toContain("SDK Test Template");
     expect(result.criteriaCount).toBe(3);
     expect(result.fetchedName).toBe(result.createdName);
     expect(result.fetchedCriteriaCount).toBe(3);
+    expect(result.deleted).toBe(true);
   }, 30000);
 });

@@ -173,6 +173,9 @@ const created = await client.createTemplate({
     { text: "Tax ID is present and valid" },
   ],
 });
+
+// Delete a template
+await client.deleteTemplate(created.id);
 ```
 
 ### Verification
@@ -318,7 +321,7 @@ npm test
 | `npm run test:chat` | Document chat: send messages, follow-up in same session, session listing |
 | `npm run test:stream` | Streaming chat via SSE: chunked responses, session persistence |
 | `npm run test:templates` | List templates by type (global/shared/org), validate counts and details |
-| `npm run test:template-crud` | Create a template, fetch by ID, verify in org list |
+| `npm run test:template-crud` | Full template lifecycle: delete existing, create, fetch, verify in list, delete, confirm removal |
 | `npm run test:video` | Video generation: create, poll until ready, list videos |
 | `npm run test:chat-detail` | Chat session detail: getChatSession, getChatSessionMessages, message roles |
 | `npm run test:download` | Document download: get pre-signed URL, verify accessibility |

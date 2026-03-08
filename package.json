@@ -1,0 +1,50 @@
+{
+  "name": "veridoq-client",
+  "version": "1.2.0",
+  "description": "Official Veridoq API client for Node.js and TypeScript with built-in retry support and exponential backoff.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist", "README.md", "examples"],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:upload": "vitest run tests/document-upload.test.ts",
+    "test:verify": "vitest run tests/verification.test.ts",
+    "test:chat": "vitest run tests/doc-chat.test.ts",
+    "test:stream": "vitest run tests/streaming-chat.test.ts",
+    "test:invalid-key": "vitest run tests/invalid-api-key.test.ts",
+    "test:templates": "vitest run tests/templates.test.ts",
+    "test:me": "vitest run tests/api-key-info.test.ts",
+    "test:usage": "vitest run tests/usage.test.ts",
+    "test:template-crud": "vitest run tests/template-crud.test.ts",
+    "test:video": "vitest run tests/video.test.ts",
+    "test:chat-detail": "vitest run tests/chat-session-detail.test.ts",
+    "test:download": "vitest run tests/document-download.test.ts",
+    "example:documents": "npx tsx examples/test-documents.ts",
+    "example:templates": "npx tsx examples/test-templates.ts",
+    "example:verification": "npx tsx examples/test-verification.ts",
+    "example:chat": "npx tsx examples/test-chat.ts",
+    "example:full": "npx tsx examples/test-full-flow.ts"
+  },
+  "keywords": ["veridoq", "api", "document", "verification", "compliance", "ai", "llm"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/veridoq/veridoq-client"
+  },
+  "engines": { "node": ">=18" },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "tsx": "^4.7.0",
+    "vitest": "^3.0.0"
+  }
+}
